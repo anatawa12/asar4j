@@ -1,0 +1,18 @@
+{
+  "files": {
+    "files": {
+      "size": 100,
+      "offset": "100"
+    },
+    "directory": {
+      "files": {
+        "in-dir-link": {
+          "link": "../files"
+        }
+      }
+    },
+    "link": {
+      "link": "files"
+    }
+  }
+}

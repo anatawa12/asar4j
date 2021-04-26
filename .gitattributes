@@ -1,0 +1,5 @@
+*                text=auto
+*.java           text
+*.kt             text
+*.json           text
+*.asar           -text
