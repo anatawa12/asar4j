@@ -18,7 +18,7 @@ public class AsarURLStreamHandlerFactory implements URLStreamHandlerFactory {
         return null;
     }
 
-    public URL createUrl(URL asarFile, String path) throws MalformedURLException {
+    public static URL createUrl(URL asarFile, String path) throws MalformedURLException {
         return new URL("asar:" + UrlUtil.encodeURL(asarFile.toString()) + "!/" + path);
     }
 }

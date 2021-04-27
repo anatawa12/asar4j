@@ -48,6 +48,8 @@ class UrlUtilTest {
         // FE and FF (duplicates with BOM)
         assertInvalid("%FE%8F%BF%BF%BF%BF%BF");
         assertInvalid("%FF%8F%BF%BF%BF%BF%BF%BF");
+        // invalid second byte
+        assertInvalid("%C2%00");
 
         // simple
         assertEquals("some text", UrlUtil.decodeURL("some%20text"));
@@ -60,6 +62,11 @@ class UrlUtilTest {
     private void assertInvalid(String s) {
         assertThrows(IllegalArgumentException.class,
                 () -> UrlUtil.decodeURL(s));
+    }
+
+    @Test
+    void encodeUrl() {
+        assertEquals("%21%25%23%3F", UrlUtil.encodeURL("!%#?"));
     }
 
     private String surrogate(int c) {

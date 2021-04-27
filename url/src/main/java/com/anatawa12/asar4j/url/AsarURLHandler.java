@@ -16,8 +16,8 @@ class AsarURLHandler extends URLStreamHandler {
 
     @Override
     protected boolean sameFile(URL u1, URL u2) {
-        if (!u1.getProtocol().equals("jar")) return false;
-        if (!u2.getProtocol().equals("jar")) return false;
+        if (!u1.getProtocol().equals("asar")) return false;
+        if (!u2.getProtocol().equals("asar")) return false;
 
         int sep1 = u1.getFile().indexOf("!/");
         int sep2 = u1.getFile().indexOf("!/");
@@ -81,17 +81,17 @@ class AsarURLHandler extends URLStreamHandler {
         int index = spec.indexOf("!/");
         if (index == -1)
             throw new IllegalArgumentException("no !/ in spec");
-        String asarURLPart = spec.substring(0, index);
+        String asarURLPart;
         String inAsar;
         try {
             inAsar = AsarEntry.normalizeName(UrlUtil.decodeURL(spec.substring(index + 1)));
-            new URL(UrlUtil.decodeURL(spec.substring(0, index)));
+            asarURLPart = new URL(UrlUtil.decodeURL(spec.substring(0, index))).toString();
         } catch (MalformedURLException | IllegalArgumentException e) {
             throw new IllegalArgumentException("invalid url: " + spec
                     + " (" + e + ")", e);
         }
         if (spec.endsWith("/")) inAsar += "/";
-        return asarURLPart + '!' + UrlUtil.encodeURL(inAsar);
+        return UrlUtil.encodeURL(asarURLPart) + '!' + UrlUtil.encodeURL(inAsar);
     }
 
     private String parseRelativeSpec(URL url, String spec) {

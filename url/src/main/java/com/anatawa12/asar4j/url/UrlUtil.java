@@ -66,6 +66,8 @@ class UrlUtil {
             char c = s.charAt(i);
             if (c == '!') builder.append("%21");
             else if (c == '%') builder.append("%25");
+            else if (c == '?') builder.append("%3F");
+            else if (c == '#') builder.append("%23");
             else builder.append(c);
         }
         return builder.toString();
@@ -73,7 +75,7 @@ class UrlUtil {
 
     private static boolean needEscape(String s) {
         for (int i = 0; i < s.length(); i++) {
-            if ("%!?#".contains(s)) return true;
+            if ("%!?#".indexOf(s.charAt(i)) != -1) return true;
         }
         return false;
     }
