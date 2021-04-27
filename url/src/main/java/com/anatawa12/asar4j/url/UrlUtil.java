@@ -57,6 +57,27 @@ class UrlUtil {
         return builder.toString();
     }
 
+    static String encodeURL(String s) {
+        int len = s.length();
+        if (!needEscape(s)) return s;
+
+        StringBuilder builder = new StringBuilder(len + 3);
+        for (int i = 0; i < len; i++) {
+            char c = s.charAt(i);
+            if (c == '!') builder.append("%21");
+            else if (c == '%') builder.append("%25");
+            else builder.append(c);
+        }
+        return builder.toString();
+    }
+
+    private static boolean needEscape(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            if ("%!?#".contains(s)) return true;
+        }
+        return false;
+    }
+
     private static final byte[] firstMasks = new byte[]{0x7F, 0x1F, 0x0F, 0x07};
     private static final int[] minValue = new int[]{0x000000, 0x000080, 0x000800, 0x010000};
 
