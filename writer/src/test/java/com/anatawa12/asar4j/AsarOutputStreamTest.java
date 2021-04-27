@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,6 +35,9 @@ class AsarOutputStreamTest {
         try (AsarOutputStream stream = new AsarOutputStream(byteArrayOutputStream)) {
             generator.generate(stream);
         }
+        Path temp = Files.createTempFile(null, ".asar");
+        Files.write(temp, byteArrayOutputStream.toByteArray());
+        System.out.println(temp);
         return new AsarFile(new SeekableInMemoryByteChannel(byteArrayOutputStream.toByteArray()));
     }
 
