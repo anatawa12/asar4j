@@ -1,4 +1,4 @@
-package com.anatawa12.asar4j;
+package com.anatawa12.asar4j.internal.asar;
 
 import org.junit.jupiter.api.Test;
 

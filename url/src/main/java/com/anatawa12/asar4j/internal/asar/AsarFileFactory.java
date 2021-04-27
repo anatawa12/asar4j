@@ -1,4 +1,6 @@
-package com.anatawa12.asar4j;
+package com.anatawa12.asar4j.internal.asar;
+
+import com.anatawa12.asar4j.AsarFile;
 
 import java.io.IOException;
 import java.io.InputStream;

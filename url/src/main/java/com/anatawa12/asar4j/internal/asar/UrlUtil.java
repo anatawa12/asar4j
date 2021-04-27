@@ -1,6 +1,6 @@
-package com.anatawa12.asar4j;
+package com.anatawa12.asar4j.internal.asar;
 
-class UrlUtil {
+public class UrlUtil {
     private UrlUtil() {
     }
 
@@ -57,7 +57,7 @@ class UrlUtil {
         return builder.toString();
     }
 
-    static String encodeURL(String s) {
+    public static String encodeURL(String s) {
         int len = s.length();
         if (!needEscape(s)) return s;
 

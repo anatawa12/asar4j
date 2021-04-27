@@ -41,15 +41,15 @@ public class URLTest {
     @Test
     void creating() throws Throwable {
         assertEquals("asar:file:/a.asar!/test1",
-                AsarURLStreamHandlerFactory.createUrl(new URL("file:/a.asar"), "test1").toString());
+                AsarURLs.createUrl(new URL("file:/a.asar"), "test1").toString());
         assertEquals("asar:file:/a.asar!/test1%21",
-                AsarURLStreamHandlerFactory.createUrl(new URL("file:/a.asar"), "test1!").toString());
+                AsarURLs.createUrl(new URL("file:/a.asar"), "test1!").toString());
 
         // inzip
         assertEquals("asar:jar:file:/test.zip%21/test.asar!/test1",
-                AsarURLStreamHandlerFactory.createUrl(new URL("jar:file:/test.zip!/test.asar"), "test1").toString());
+                AsarURLs.createUrl(new URL("jar:file:/test.zip!/test.asar"), "test1").toString());
         assertEquals("asar:jar:file:/test.zip%21/test.asar!/test1/",
-                AsarURLStreamHandlerFactory.createUrl(new URL("jar:file:/test.zip!/test.asar"), "test1/").toString());
+                AsarURLs.createUrl(new URL("jar:file:/test.zip!/test.asar"), "test1/").toString());
     }
 
     @Test

@@ -1,10 +1,8 @@
 package com.anatawa12.asar4j;
 
-import java.net.URL;
-
 public class FactoryRegistrar {
     static {
-        URL.setURLStreamHandlerFactory(AsarURLStreamHandlerFactory.INSTANCE);
+        AsarURLs.registerToSystemProp();
     }
 
     // run in static initializer

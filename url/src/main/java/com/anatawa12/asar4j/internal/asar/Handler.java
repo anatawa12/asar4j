@@ -1,4 +1,6 @@
-package com.anatawa12.asar4j;
+package com.anatawa12.asar4j.internal.asar;
+
+import com.anatawa12.asar4j.AsarEntry;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -6,7 +8,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
 
-class AsarURLHandler extends URLStreamHandler {
+// Internal class. This will only be used by java.protocol.handler.pkgs system property
+public class Handler extends URLStreamHandler {
     @Override
     protected URLConnection openConnection(URL u) throws IOException {
         return new AsarURLConnection(u);
