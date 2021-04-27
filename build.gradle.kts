@@ -3,6 +3,7 @@ plugins {
     java
     `maven-publish`
     signing
+    jacoco
 }
 
 group = "com.anatawa12.asar4j"
@@ -12,6 +13,7 @@ subprojects {
     apply(plugin = "java")
     apply(plugin = "maven-publish")
     apply(plugin = "signing")
+    apply(plugin = "jacoco")
 
     group = project(":").group
     version = project(":").version
@@ -36,6 +38,14 @@ subprojects {
 
     tasks.test {
         useJUnitPlatform()
+
+        finalizedBy(tasks.jacocoTestReport.get())
+    }
+
+    tasks.jacocoTestReport {
+        reports {
+            html.isEnabled = true
+        }
     }
 
     tasks.compileJava {
