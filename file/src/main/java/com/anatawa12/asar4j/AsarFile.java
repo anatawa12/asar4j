@@ -180,6 +180,8 @@ public class AsarFile implements Closeable {
         entries = new HashMap<>();
         while (reader.cur() != '}') {
             String childName = reader.readKey();
+            if (childName.contains("/") || childName.contains("\\"))
+                throw new AsarException("entry name must not have / or \\.");
             AsarEntry childEntry = readEntry(reader, base + "/" + childName, owner);
             if (childEntry != null)
                 entries.put(childName, childEntry);
