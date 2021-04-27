@@ -43,7 +43,7 @@ class AsarDirectoryEntry extends AsarEntry {
     void addChild(AsarEntry child) {
         if (!child.getName().startsWith(getName())
                 || child.getName().length() == getName().length()
-                || child.getName().charAt(child.getName().length() - 1) != '/')
+                || child.getName().charAt(getName().length()) != '/')
             throw new IllegalArgumentException("the entry is not descendants of this");
         String name = child.getName().substring(getName().length() + 1);
         if (name.contains("/"))
