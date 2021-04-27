@@ -51,4 +51,55 @@ subprojects {
     tasks.compileJava {
         options.compilerArgs.add("-Xlint")
     }
+
+    val maven = publishing.publications.create("maven", MavenPublication::class) {
+        from(project.components["java"])
+
+        pom {
+            name.set(base.archivesBaseName)
+            description.set("A asar implementation in java without runtime dependency.")
+            url.set("https://github.com/anatawa12/asar4j")
+
+            scm {
+                url.set("https://github.com/anatawa12/asar4j")
+                connection.set("scm:git:git://github.com/anatawa12/asar4j.git")
+                developerConnection.set("scm:git:git@github.com:anatawa12/asar4j.git")
+            }
+
+            issueManagement {
+                system.set("github")
+                url.set("https://github.com/anatawa12/asar4j/issues")
+            }
+
+            licenses {
+                license {
+                    name.set("MIT License")
+                    url.set("https://opensource.org/licenses/MIT")
+                    distribution.set("repo")
+                }
+            }
+
+            developers {
+                developer {
+                    id.set("anatawa12")
+                    name.set("anatawa12")
+                    roles.set(setOf("developer"))
+                }
+            }
+        }
+    }
+
+    publishing.repositories.maven {
+        name = "ossrh"
+        url = if (version.toString().endsWith("SNAPSHOT"))
+            uri("https://oss.sonatype.org/content/repositories/snapshots")
+        else uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
+
+        credentials {
+            username = project.findProperty("com.anatawa12.sonatype.username")?.toString() ?: ""
+            password = project.findProperty("com.anatawa12.sonatype.passeord")?.toString() ?: ""
+        }
+    }
+
+    signing.sign(maven)
 }
