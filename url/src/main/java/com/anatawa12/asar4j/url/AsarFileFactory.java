@@ -4,6 +4,8 @@ import com.anatawa12.asar4j.AsarFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -43,7 +45,11 @@ class AsarFileFactory {
 
     private AsarFile createURLAsarFile(URL url) throws IOException {
         if (isLocalFileUrl(url)) {
-            return new AsarFile(Paths.get(UrlUtil.decodeURL(url.getFile())));
+            try {
+                return new AsarFile(Paths.get(new URI("file:" + url.getFile())));
+            } catch (URISyntaxException e) {
+                throw new AssertionError(e);
+            }
         } else {
             return getAndCreate(url);
         }

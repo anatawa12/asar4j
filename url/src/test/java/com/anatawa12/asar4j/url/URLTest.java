@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class URLTest {
     static {
-        URL.setURLStreamHandlerFactory(AsarURLStreamHandlerFactory.INSTANCE);
+        FactoryRegistrar.register();
     }
 
     @Test

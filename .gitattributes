@@ -3,3 +3,4 @@
 *.kt             text
 *.json           text
 *.asar           -text
+*.zip            -text

@@ -26,7 +26,7 @@ public class AsarURLConnection extends URLConnection {
     public AsarURLConnection(URL url) throws IOException {
         super(url);
         parseSpec(url.getFile());
-        asarFileConnection = url.openConnection();
+        asarFileConnection = asarFileURL.openConnection();
     }
 
     private void parseSpec(String spec) throws MalformedURLException {
