@@ -87,7 +87,7 @@ public class AsarFile implements Closeable {
         long jsonSize = sizeFields.getInt() & 0xFFFF_FFFFL;
 
         JsonReader reader = new JsonReader(Channels.newReader(
-                new SLROSByteChannel(file, 16, jsonSize),
+                new SLROSByteChannel(file, 16, jsonSize, this),
                 StandardCharsets.UTF_8.newDecoder(),
                 -1));
         AsarEntry entry = readEntry(reader, "", this);
@@ -296,7 +296,7 @@ public class AsarFile implements Closeable {
         if (entry.getType() != AsarEntryType.FILE) throw new IllegalArgumentException("the entry is not a file");
         if (entry.owner != this) throw new IllegalArgumentException("the entry is not of this file");
         return new SLROSByteChannel(
-                file, initialOffset + entry.offset, entry.getSize());
+                file, initialOffset + entry.offset, entry.getSize(), this);
     }
 
     public Enumeration<? extends AsarEntry> entries() {
