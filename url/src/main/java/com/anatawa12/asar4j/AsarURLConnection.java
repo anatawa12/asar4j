@@ -1,7 +1,4 @@
-package com.anatawa12.asar4j.url;
-
-import com.anatawa12.asar4j.AsarEntry;
-import com.anatawa12.asar4j.AsarFile;
+package com.anatawa12.asar4j;
 
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;

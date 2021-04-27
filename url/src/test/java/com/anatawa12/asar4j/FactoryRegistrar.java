@@ -1,4 +1,4 @@
-package com.anatawa12.asar4j.url;
+package com.anatawa12.asar4j;
 
 import java.net.URL;
 

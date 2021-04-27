@@ -1,4 +1,4 @@
-package com.anatawa12.asar4j.url;
+package com.anatawa12.asar4j;
 
 import com.google.common.io.ByteStreams;
 import org.junit.jupiter.api.Test;
