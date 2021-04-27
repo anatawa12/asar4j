@@ -250,6 +250,7 @@ public class AsarOutputStream extends OutputStream {
      */
     public void finish() throws IOException {
         closeEntry();
+        ensureClose();
         // for erasure concurrent operation
         ByteArrayOutputStream bodyBuffer = this.bodyBuffer;
         this.bodyBuffer = null;
@@ -278,6 +279,13 @@ public class AsarOutputStream extends OutputStream {
 
         // body
         bodyBuffer.writeTo(out);
+    }
+
+    @Override
+    public void close() throws IOException {
+        if (bodyBuffer != null)
+            finish();
+        out.close();
     }
 
     private void ensureEntry() throws IOException {
