@@ -149,12 +149,12 @@ public class AsarOutputStream extends OutputStream {
         entry.offset = bodyBuffer.size();
     }
 
-    private void addEntry(AsarEntry entry, boolean allowSameType) throws AsarException {
-        List<String> components = AsarEntry.components(entry.getName());
+    private void addEntry(AsarEntry adding, boolean allowSameType) throws AsarException {
+        List<String> components = AsarEntry.components(adding.getName());
         if (components.isEmpty())
             throw new AsarException("entry name duplicated: '' (root entry)");
 
-        AsarEntry current = root;
+        AsarDirectoryEntry current = root;
         ListIterator<String> iterator = components.listIterator();
         String component;
         // because components is not empty.
@@ -162,15 +162,19 @@ public class AsarOutputStream extends OutputStream {
         while (true) {
             component = iterator.next();
             if (!iterator.hasNext()) break;
-            current = current.getChild(component);
-            if (current == null || current.getType() != AsarEntryType.DIRECTORY)
+            AsarEntry entry = current.getChild(component);
+            if (entry != null && current.getType() != AsarEntryType.DIRECTORY)
                 throw new AsarException("directory not found: '" + name(components, iterator) + "' (root entry)");
+            if (entry == null)
+                current.addChild(
+                        entry = new AsarDirectoryEntry(name(components, iterator), new HashMap<>()));
+            current = (AsarDirectoryEntry) entry;
         }
 
         if (current.getChild(component) != null &&
-                (!allowSameType || current.getChild(component).getType() != entry.getType()))
-            throw new AsarException("entry name duplicated: '" + entry.getName() + "' (root entry)");
-        ((AsarDirectoryEntry) current).addChild(entry);
+                (!allowSameType || current.getChild(component).getType() != adding.getType()))
+            throw new AsarException("entry name duplicated: '" + adding.getName() + "' (root entry)");
+        current.addChild(adding);
     }
 
     private String name(List<String> components, ListIterator<String> iterator) {
