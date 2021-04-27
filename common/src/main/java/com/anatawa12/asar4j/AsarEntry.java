@@ -145,7 +145,7 @@ public class AsarEntry implements Cloneable {
     public final String getBasename() {
         if (name.isEmpty())
             throw new IllegalStateException("root directory entry doesn't have basename");
-        return name.substring(name.lastIndexOf('/'));
+        return name.substring(name.lastIndexOf('/') + 1);
     }
 
     /**

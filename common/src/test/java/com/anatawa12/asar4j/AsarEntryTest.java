@@ -63,6 +63,12 @@ class AsarEntryTest {
         }
     }
 
+    @Test
+    void getBasename() {
+        assertEquals("test.txt", new AsarEntry("test.txt").getBasename());
+        assertEquals("test.txt", new AsarEntry("directory/test.txt").getBasename());
+    }
+
     private static final NormalizeCheck[] normalizeChecks = new NormalizeCheck[]{
             new NormalizeCheck("/", ""),
             new NormalizeCheck("file.txt", "/file.txt"),
