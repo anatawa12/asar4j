@@ -318,9 +318,9 @@ public class AsarOutputStream extends OutputStream {
                 break;
             }
             case FILE:
-                writer.write("{\"offset\":");
+                writer.write("{\"offset\":\"");
                 writer.write(Long.toString(entry.offset));
-                writer.write(",\"size\":");
+                writer.write("\",\"size\":");
                 writer.write(Integer.toString(entry.getSize()));
                 if (entry.isExecutable())
                     writer.write(",\"executable\":true}");
