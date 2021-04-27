@@ -90,7 +90,7 @@ class AsarURLHandler extends URLStreamHandler {
             throw new IllegalArgumentException("invalid url: " + spec
                     + " (" + e + ")", e);
         }
-        if (inAsar.isEmpty()) inAsar = "/";
+        if (spec.endsWith("/")) inAsar += "/";
         return asarURLPart + '!' + UrlUtil.encodeURL(inAsar);
     }
 
