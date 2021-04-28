@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.anatawa12.asar4j"
-version = "1.0-SNAPSHOT"
+version = "0.0.1"
 
 subprojects {
     apply(plugin = "java-library")
