@@ -1,8 +1,4 @@
-plugins {
-    java
-}
-
 dependencies {
-    implementation(project(":common"))
+    api(project(":common"))
     testImplementation(project(":file"))
 }

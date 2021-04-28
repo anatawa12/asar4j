@@ -1,6 +1,6 @@
 plugins {
     // for subproject configurations
-    java
+    `java-library`
     `maven-publish`
     signing
     jacoco
@@ -10,7 +10,7 @@ group = "com.anatawa12.asar4j"
 version = "1.0-SNAPSHOT"
 
 subprojects {
-    apply(plugin = "java")
+    apply(plugin = "java-library")
     apply(plugin = "maven-publish")
     apply(plugin = "signing")
     apply(plugin = "jacoco")

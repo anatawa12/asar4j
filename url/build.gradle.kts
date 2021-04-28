@@ -1,10 +1,6 @@
-plugins {
-    java
-}
-
 dependencies {
-    implementation(project(":common"))
-    implementation(project(":file"))
+    api(project(":common"))
+    api(project(":file"))
 }
 
 val createAsarZip by tasks.creating(Zip::class) {
