@@ -1,5 +1,5 @@
 # ASAR4j
-[![a12 maintenance: Active](https://anatawa12.com/short.php?q=a12-active-svg)](https://anatawa12.com/short.php?q=a12-active-doc)
+[![a12 maintenance: inactive](https://anatawa12.com/short.php?q=a12-inactive-svg)](https://anatawa12.com/short.php?q=a12-inactive-doc)
 [![](https://img.shields.io/maven-central/v/com.anatawa12.asar4j/common)](https://github.com/anatawa12/asar4j/releases/latest)
 [![Discord](https://img.shields.io/discord/834256470580396043)](https://discord.gg/yzEdnuJMXv)
 
