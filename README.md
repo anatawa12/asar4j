@@ -25,7 +25,7 @@ To add a dependency on asar4j using Maven, use the following:
 <dependency>
   <groupId>com.anatawa12.asar4j</groupId>
   <artifactId>[choose from file, writer or url]</artifactId>
-  <version>0.0.1</version>
+  <version>[version]</version>
 </dependency>
 ```
 
@@ -33,7 +33,7 @@ To add a dependency using Gradle:
 
 ```kotlin
 dependencies {
-  implementation("com.anatawa12.asar4j:<library-name>:0.0.1")
+  implementation("com.anatawa12.asar4j:<library-name>:<version>")
 }
 ```
 
